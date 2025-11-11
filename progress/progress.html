@@ -3,44 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EcoLearn Progress Tracker</title>
+  <title>EcoLearn Progress</title>
   <link rel="stylesheet" href="progress.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <!-- Hero Section -->
-  <section class="progress-hero">
-    <div class="progress-content">
-      <h1>Track Your Learning Progress</h1>
-      <p>Visualize your goals and see how far you’ve come on EcoLearn!</p>
-    </div>
-  </section>
 
-  <!-- Stats Section -->
-  <section class="stats-section">
-    <div class="stat-card">
-      <h2 id="courses">0</h2>
-      <p>Courses Completed</p>
-    </div>
-    <div class="stat-card">
-      <h2 id="badges">0</h2>
-      <p>Badges Earned</p>
-    </div>
-    <div class="stat-card">
-      <h2 id="hours">0</h2>
-      <p>Hours Spent Learning</p>
-    </div>
-  </section>
+  <section class="progress-section">
+    <div class="container">
+      <div class="header">
+        <h1>Your Learning Progress</h1>
+        <p>Track your achievements and see how far you’ve come!</p>
+      </div>
 
-  <!-- Charts Section -->
-  <section class="charts-section">
-    <div class="chart-container">
-      <h3>Learning Categories</h3>
-      <canvas id="categoryChart"></canvas>
-    </div>
-    <div class="chart-container">
-      <h3>Weekly Progress</h3>
-      <canvas id="weeklyChart"></canvas>
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h2 id="coursesCompleted">0</h2>
+          <p>Courses Completed</p>
+        </div>
+        <div class="stat-card">
+          <h2 id="hoursStudied">0</h2>
+          <p>Hours Studied</p>
+        </div>
+        <div class="stat-card">
+          <h2 id="badgesEarned">0</h2>
+          <p>Badges Earned</p>
+        </div>
+      </div>
+
+      <!-- Progress Bars -->
+      <div class="progress-container">
+        <h2>Module Progress</h2>
+        <div class="progress-item">
+          <p>HTML & CSS</p>
+          <div class="progress-bar"><span data-progress="90"></span></div>
+        </div>
+        <div class="progress-item">
+          <p>JavaScript</p>
+          <div class="progress-bar"><span data-progress="75"></span></div>
+        </div>
+        <div class="progress-item">
+          <p>Python</p>
+          <div class="progress-bar"><span data-progress="60"></span></div>
+        </div>
+        <div class="progress-item">
+          <p>AI Concepts</p>
+          <div class="progress-bar"><span data-progress="45"></span></div>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>Weekly Study Time</h3>
+          <canvas id="barChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Topic Mastery</h3>
+          <canvas id="doughnutChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Achievements -->
+      <div class="achievements">
+        <h2>Achievements</h2>
+        <div class="achievements-grid">
+          <div class="achievement-card">🏅 Completed Beginner Level</div>
+          <div class="achievement-card">🌱 Started AI Fundamentals</div>
+          <div class="achievement-card">🔥 10-Day Study Streak</div>
+        </div>
+      </div>
     </div>
   </section>
 

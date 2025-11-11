@@ -1,55 +1,69 @@
-// ===== Animated Counters =====
-function animateCounter(id, target, duration) {
+// Counter animation
+const animateCounter = (id, target, duration) => {
   const element = document.getElementById(id);
   let start = 0;
-  const stepTime = Math.abs(Math.floor(duration / target));
-  const timer = setInterval(() => {
-    start++;
-    element.textContent = start;
-    if (start >= target) clearInterval(timer);
-  }, stepTime);
-}
-
-window.addEventListener("load", () => {
-  animateCounter("courses", 12, 1500);
-  animateCounter("badges", 8, 1500);
-  animateCounter("hours", 42, 1500);
-
-  // ===== Charts =====
-  const ctx1 = document.getElementById("categoryChart");
-  new Chart(ctx1, {
-    type: "doughnut",
-    data: {
-      labels: ["AI", "Data Science", "Web Dev", "Cybersecurity"],
-      datasets: [{
-        data: [35, 25, 20, 20],
-        backgroundColor: ["#5EAAB5", "#B2E0E6", "#8EDCE6", "#4B9AA6"],
-        borderWidth: 1,
-      }]
-    },
-    options: {
-      plugins: {
-        legend: { position: "bottom" }
-      }
+  const increment = target / (duration / 16);
+  const counter = setInterval(() => {
+    start += increment;
+    if (start >= target) {
+      start = target;
+      clearInterval(counter);
     }
-  });
+    element.textContent = Math.floor(start);
+  }, 16);
+};
 
-  const ctx2 = document.getElementById("weeklyChart");
-  new Chart(ctx2, {
-    type: "bar",
-    data: {
-      labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-      datasets: [{
-        label: "Hours Studied",
-        data: [2, 3, 4, 1, 5, 2, 3],
-        backgroundColor: "#5EAAB5",
-        borderRadius: 8,
-      }]
-    },
-    options: {
-      scales: {
-        y: { beginAtZero: true }
-      }
-    }
+// Start counters
+animateCounter('coursesCompleted', 12, 1000);
+animateCounter('hoursStudied', 87, 1200);
+animateCounter('badgesEarned', 5, 800);
+
+// Progress bar animation
+const progressBars = document.querySelectorAll('.progress-bar span');
+window.addEventListener('load', () => {
+  progressBars.forEach(bar => {
+    const value = bar.getAttribute('data-progress');
+    bar.style.width = `${value}%`;
   });
+});
+
+// Charts
+const barCtx = document.getElementById('barChart');
+new Chart(barCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    datasets: [{
+      label: 'Hours Studied',
+      data: [2, 3, 4, 3, 5, 2, 4],
+      backgroundColor: '#5EAAB5'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+const doughnutCtx = document.getElementById('doughnutChart');
+new Chart(doughnutCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['HTML & CSS', 'JS', 'Python', 'AI'],
+    datasets: [{
+      data: [90, 75, 60, 45],
+      backgroundColor: ['#5EAAB5', '#B2E0E6', '#A1D3D9', '#7FC9D3']
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom' }
+    },
+    cutout: '70%'
+  }
 });
